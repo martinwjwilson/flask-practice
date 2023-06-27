@@ -6,21 +6,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    age = getAge()
+    age = get_age()
     return f"<p>Rod Stewart is {age} years old</p>"
 
 
-@app.route("/<name>")
-def user(name):
-    return f"Hello {name}!"
-
-
-@app.route("/admin")
-def admin():
-    return redirect(url_for("home"))
-
-
-def getAge() -> str:
+def get_age() -> str:
     birthday = datetime.datetime(1945, 1, 10)
     today = datetime.date.today()
     age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
